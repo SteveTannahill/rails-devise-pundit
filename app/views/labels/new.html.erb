@@ -1,0 +1,31 @@
+<div class="authform">
+  <%= form_for(@label, html: {class: 'form-horizontal'}) do |f| %>
+    <% if @label.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@label.errors.count, "error") %> prohibited this label from being saved:</h2>
+        <ul>
+        <% @label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h3>Labels</h3>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, value: Faker::Lorem.word, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :colour %>
+      <%= f.text_field :colour, value: Faker::Color.hex_color, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+     <%= f.submit 'Create', :class => 'button right' %>
+     </div>
+     <div>
+       <% @labels.each do | label | %>
+         <%= render label %> 
+       <% end %>
+     </div>
+  <% end %>
+</div>
